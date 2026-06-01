@@ -16,11 +16,11 @@ COPY . ./
 COPY --from=0 /app/public/assets ./public/assets
 RUN apk add --no-cache --update ca-certificates dcron curl git supervisor tar unzip nginx libpng-dev libxml2-dev libzip-dev certbot certbot-nginx mysql-client \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install bcmath gd pdo_mysql zip \
+    && docker-php-ext-install bcmath gd opcache pdo_mysql zip \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && cp .env.example .env \
     && mkdir -p bootstrap/cache/ storage/logs storage/framework/sessions storage/framework/views storage/framework/cache \
-    && chmod 777 -R bootstrap storage \
+    && chmod 775 -R bootstrap storage \
     && composer install --no-dev --optimize-autoloader \
     && rm -rf .env bootstrap/cache/*.php \
     && mkdir -p /app/storage/logs/ \
@@ -33,6 +33,7 @@ RUN rm /usr/local/etc/php-fpm.conf \
     && mkdir -p /var/run/php /var/run/nginx
 
 COPY .github/docker/default.conf /etc/nginx/http.d/default.conf
+COPY .github/docker/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY .github/docker/www.conf /usr/local/etc/php-fpm.conf
 COPY .github/docker/supervisord.conf /etc/supervisord.conf
 

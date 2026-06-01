@@ -49,6 +49,11 @@ jobs:
           coverage: none
       - run: cp .env.ci .env
       - run: composer install --no-interaction --no-progress --no-suggest --prefer-dist
+      # Surface known CVEs in locked dependencies. Non-blocking: advisories are
+      # published continuously against transitive deps and should not turn
+      # unrelated PRs red — but they must be visible so we can act on them.
+      - run: composer audit --locked --no-interaction
+        continue-on-error: true
       - run: vendor/bin/php-cs-fixer fix --dry-run --diff
       - run: vendor/bin/phpunit --bootstrap vendor/autoload.php tests/Unit
         env:
