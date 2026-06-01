@@ -1,3 +1,17 @@
+<!-- INTERNALHOST FORK NOTICE -->
+> ### 🛠️ InternalHost fork
+> This is [InternalHost](https://internalhost.eu)'s deployment of Pterodactyl Panel
+> (`gamepanel`), tracking upstream `pterodactyl/panel` @ `1.0-develop`. Fork-owned
+> docs live in [`.internalhost/`](./.internalhost/):
+> - [`FORK.md`](./.internalhost/FORK.md) — divergence from upstream, dependency &
+>   security hardening, and the **`laravel/sanctum ~4.2.0` compatibility hold**.
+> - [`PAYMENTER_INTEGRATION.md`](./.internalhost/PAYMENTER_INTEGRATION.md) — prep
+>   notes for the planned Paymenter billing integration.
+>
+> Everything below is the upstream Pterodactyl README, kept verbatim for rebase
+> friendliness.
+<!-- /INTERNALHOST FORK NOTICE -->
+
 [![Logo Image](https://cdn.pterodactyl.io/logos/new/pterodactyl_logo.png)](https://pterodactyl.io)
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pterodactyl/panel/ci.yaml?label=Tests&style=for-the-badge&branch=1.0-develop)
